@@ -1,0 +1,75 @@
+-- Solution part 1
+-- Table DEPT created
+Create table DEPT
+(
+DEPTNO int(2),
+DNAME varchar(15),
+LOC varchar(10)
+);
+
+insert into DEPT 
+values 
+(10,'ACCOUNTING','NEW YORK'),
+(20,'RESEARCH','DALLAS'),
+(30,'SALES','CHICAGO'),
+(40,'OPERATIONS','BOSTON');
+select * from DEPT;
+
+-- solution part 2
+-- Table EMP created
+Create table EMP
+(
+EMPNO int,
+ENAME varchar(10),
+JOB varchar(9),
+HIREDATE date,
+SAL float,
+COMM float,
+DEPTNO int
+);
+
+insert into EMP
+values
+(7839,'KING','MANAGER','1991-11-17',5000,NULL,10),
+(7698,'BLAKE','CLERK','1981-05-01',2850,NULL,30),
+(7782,'CLARK','MANAGER','1981-06-09',2450,NULL,10),
+(7566,'JONES','CLERK','1981-04-02',2975,NULL,20),
+(7654,'MARTIN','SALESMAN','1981-09-28',1250,1400,30),
+(7499,'ALLEN','SALESMAN','1981-02-20',1600,300,30);
+desc emp;
+select * from emp;
+
+-- solution part 3
+
+select * from emp where sal between 2500 and 5000;
+
+-- solution part 4
+
+select ename from emp order by ename desc;
+
+-- solution part 5
+
+select lower(job) as JOB from emp;
+
+-- solution part 6
+
+select ename,length(ename) as Length from emp;
+
+-- solution part 7
+
+select d.deptno,count(e.deptno) as employes from dept d join emp e group by d.deptno;
+
+
+-- solution part 8
+
+select ename,dname from emp  join dept on dept.deptno=emp.deptno;
+
+-- solution part 9
+
+select ename,instr(ename,'AR') as position from emp;
+
+-- solution part 10
+
+select ename,sal,0.2* sal as HRA from emp;
+
+

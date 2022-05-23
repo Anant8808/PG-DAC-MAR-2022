@@ -1,0 +1,29 @@
+
+
+
+
+
+delimiter //
+create procedure proc1(s1 varchar(15) ,s2 varchar(15))
+begin
+
+
+   declare a int;
+set a=locate(s1,s2);
+if a!=0 then
+insert into temp values(s1,s2,'Present');
+else
+insert into temp values(s1,s2,'Absent');
+end if;
+end; //
+delimiter ;
+
+call proc1('DAC','CDAC');
+
+
+
+
+select * from temp;
+
+
+

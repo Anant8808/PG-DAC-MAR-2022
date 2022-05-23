@@ -1,0 +1,51 @@
+
+create table triangle
+(
+a int,
+b int,
+c int,
+valid char(5)
+);
+
+delimiter //
+create function FUNC1(a int,b int,c int)
+returns boolean
+deterministic
+begin
+   
+   if (a+b > c and a+c > b and c+b > a) then
+       return true;
+   else
+     return false;
+end if;
+end; //
+delimiter ;
+
+delimiter //
+create procedure bcd(x int ,y int,z int)
+begin
+
+declare q boolean;
+
+set q=FUNC1(x,y,z);
+
+if q=1 then
+insert into triangle values (x,y,z,'TRUE');
+else
+insert into triangle values (x,y,z,'False');
+end if;
+end; //
+delimiter ;
+
+call bcd(3,4,5);
+call bcd(4,6,8);
+call bcd (2,4,9);
+
+drop function FUNC1;
+drop procedure bcd;
+
+select * from triangle;
+
+
+
+
